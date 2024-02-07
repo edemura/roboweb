@@ -1,0 +1,1 @@
+.\winenv\Scripts\activate
