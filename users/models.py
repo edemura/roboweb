@@ -4,6 +4,8 @@ from typing import Union, Optional, Tuple
 
 from django.db import models
 from django.db.models import QuerySet, Manager
+from django.utils.translation import gettext_lazy as _
+
 from telegram import Update
 from telegram.ext import CallbackContext
 
