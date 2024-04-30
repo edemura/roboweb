@@ -5,7 +5,8 @@ from django.shortcuts import render
 from dtb.settings import DEBUG
 
 from users.models import Location
-from users.models import User, Robo7Task
+from users.models import User
+from users.models import Robo7Task
 from users.forms import BroadcastForm
 
 from users.tasks import broadcast_message
@@ -56,6 +57,8 @@ class LocationAdmin(admin.ModelAdmin):
 
 #Все что ниже самописное для робо7
 
+
+@admin.register(Robo7Task) 
 class Robo7TaskAdmin(admin.ModelAdmin):
     list_display=['patient_fio', 'analysis', 'code', 'tray_num', 'is_tray_assigned',
                   'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'create_datetime', 'update_datetime', 'filenameok','tray_num_task',]
@@ -65,4 +68,3 @@ class Robo7TaskAdmin(admin.ModelAdmin):
         
     ]
   
-admin.site.register(Robo7Task, Robo7TaskAdmin) 
