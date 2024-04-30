@@ -120,7 +120,7 @@ class Robo7Task(models.Model):
 
 #входящий JSON неразобранный
 
-class incomejson(models.Model):
+class Incomejson(models.Model):
 
     class Meta:
         verbose_name=_('Входящие JSON')
@@ -128,7 +128,7 @@ class incomejson(models.Model):
 
     create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
     is_processed = models.BooleanField(null=True, default=None, verbose_name="Валидация пройдена")
-    json = models.JSONField(encoder=None, decoder=None)
+    json = models.JSONField(null=True, default=None, encoder=None, decoder=None)
 
     def __str__(self):
         return str(self.create_datetime)
