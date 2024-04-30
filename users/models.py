@@ -83,3 +83,34 @@ class Location(CreateTracker):
 
     def __str__(self):
         return f"user: {self.user}, created at {self.created_at.strftime('(%H:%M, %d %B %Y)')}"
+
+
+#Все что ниже самописное для робо7
+    
+#Задачи robo7
+
+class Robo7Task(models.Model):
+  
+  class Meta:
+     verbose_name=_('Задание на приборе')
+     verbose_name_plural=_('Задания на приборе')
+
+  patient_fio = models.CharField(max_length=255, verbose_name="ФИО пациента")
+  analysis = models.CharField(max_length=255, verbose_name="Наименование вида исследования")
+  code = models.CharField(max_length=255, verbose_name="ШК")
+  tray_num = models.IntegerField(null=True, default=0, verbose_name="Назначенный лоток")
+  is_tray_assigned = models.BooleanField(null=True, default=None, verbose_name="Лоток назначен")
+  is_validated = models.BooleanField(null=True, default=None, verbose_name="Валидация пройдена")
+  is_sent = models.BooleanField(null=True, default=None, verbose_name="Отправлено на прибор")
+  is_complete = models.BooleanField(null=True, default=None, verbose_name="Выполнено")
+  is_filename = models.BooleanField(null=True, default=None, verbose_name="Сформировано имя файла")
+  filename = models.CharField(max_length=255, null=True, default=None, verbose_name="Имя файла")
+  filenameok = models.CharField(max_length=255, null=True, default=None, verbose_name="Имя файла OK")
+  is_label = models.BooleanField(null=True, default=None, verbose_name="Сформировано содержание этикетки")
+  label = models.CharField(max_length=255, null=True, default=None, verbose_name="Содержание этикетки")
+  create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
+  update_datetime = models.DateTimeField(null=True, auto_now=True, auto_now_add=False, verbose_name='Изменено')
+  tray_num_task = models.IntegerField(null=True, default=0, verbose_name="tray num за текущую дату")
+
+  def __str__(self):
+    return self.patient_fio+' '+self.code+' '+str(self.create_datetime)
