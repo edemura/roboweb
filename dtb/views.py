@@ -39,3 +39,12 @@ class TelegramBotWebhookView(View):
 
     def get(self, request, *args, **kwargs):  # for debug
         return JsonResponse({"ok": "Get request received! But nothing done"})
+
+#добавлено мной
+
+from json import loads
+def recieve_json(request):
+    if request.method == 'POST':
+        print(loads(request.body)['name'])
+
+    return JsonResponse({"ok": "JSON received"})
