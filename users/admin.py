@@ -7,6 +7,8 @@ from dtb.settings import DEBUG
 from users.models import Location
 from users.models import User
 from users.models import Robo7Task
+from users.models import Incomejson
+
 from users.forms import BroadcastForm
 
 from users.tasks import broadcast_message
@@ -68,3 +70,7 @@ class Robo7TaskAdmin(admin.ModelAdmin):
         
     ]
   
+
+@admin.register(Incomejson) 
+class IncomejsonAdmin(admin.ModelAdmin):
+    list_display = ['create_datetime', 'is_processed', 'json']

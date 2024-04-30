@@ -116,3 +116,19 @@ class Robo7Task(models.Model):
 
   def __str__(self):
     return self.patient_fio+' '+self.code+' '+str(self.create_datetime)
+  
+
+#входящий JSON неразобранный
+
+class incomejson(models.Model):
+
+    class Meta:
+        verbose_name=_('Входящие JSON')
+        verbose_name_plural=_('Входящие JSON')
+
+    create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
+    is_processed = models.BooleanField(null=True, default=None, verbose_name="Валидация пройдена")
+    json = models.JSONField(encoder=None, decoder=None)
+
+    def __str__(self):
+        return str(self.create_datetime)
