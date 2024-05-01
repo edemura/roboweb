@@ -10,6 +10,7 @@ from tgbot.dispatcher import dispatcher
 from tgbot.main import bot
 
 from users.models import Incomejson
+from django.core import serializers
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +50,8 @@ def recieve_json(request):
     if request.method == 'POST':
         #print(loads(request.body)['name'])
         json=Incomejson()
-        json.json=request.body
+        data = serializers.serialize("json", request.body)
+        json.json=data
         json.save()
 
     return JsonResponse({"ok": "JSON received"})
