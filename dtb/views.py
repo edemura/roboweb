@@ -9,6 +9,8 @@ from dtb.settings import DEBUG
 from tgbot.dispatcher import dispatcher
 from tgbot.main import bot
 
+from users.models import Incomejson
+
 logger = logging.getLogger(__name__)
 
 
@@ -45,6 +47,9 @@ class TelegramBotWebhookView(View):
 from json import loads
 def recieve_json(request):
     if request.method == 'POST':
-        print(loads(request.body)['name'])
+        #print(loads(request.body)['name'])
+        json=Incomejson()
+        json.json=request.body
+        json.save()
 
     return JsonResponse({"ok": "JSON received"})
