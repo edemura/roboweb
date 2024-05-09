@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Union, Optional, Tuple
+from typing import Any, Union, Optional, Tuple
 
 from django.db import models
 from django.db.models import QuerySet, Manager
@@ -11,6 +11,8 @@ from telegram.ext import CallbackContext
 
 from tgbot.handlers.utils.info import extract_user_data_from_update
 from utils.models import CreateUpdateTracker, nb, CreateTracker, GetOrNoneManager
+
+from dtb.celery import app
 
 
 class AdminUserManager(Manager):
@@ -129,6 +131,74 @@ class Incomejson(models.Model):
     create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
     is_processed = models.BooleanField(null=True, default=None, verbose_name="Валидация пройдена")
     json = models.JSONField(null=True, default=None, encoder=None, decoder=None)
+    text = models.TextField(null=True, default=None)
 
     def __str__(self):
         return str(self.create_datetime)
+    
+    @app.task(ignore_result=True)
+    def process(self):
+        self.is_processed=True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        self.save()
+    
+    #def __init__(self, *args: Any, **kwargs: Any) -> None:
+        
+        #self.json=({"blah-blah": "it works"})
+
+        #self.save()
+        #self.is_processed=True
+
+        #super().__init__(*args, **kwargs) 
+
+    #def __new__(self) -> None:
+       # self.json=({"blah-blah": "it works"})
+       # return super().__new__(self)

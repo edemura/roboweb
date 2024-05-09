@@ -50,8 +50,11 @@ def recieve_json(request):
     if request.method == 'POST':
         #print(loads(request.body)['name'])
         json=Incomejson()
-        data = serializers.serialize("json", request.body)
-        json.json=data
+        #logger.info(request.body)
+        #print("Goodbye cruel world!", file="stderr.txt")
+        #data = serializers.serialize("json", request.body)
+        json.text=request.body
         json.save()
+        json.process()
 
     return JsonResponse({"ok": "JSON received"})

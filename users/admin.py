@@ -73,4 +73,4 @@ class Robo7TaskAdmin(admin.ModelAdmin):
 
 @admin.register(Incomejson) 
 class IncomejsonAdmin(admin.ModelAdmin):
-    list_display = ['create_datetime', 'is_processed', 'json']
+    list_display = ['create_datetime', 'is_processed', 'text', 'json',]
