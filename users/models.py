@@ -136,7 +136,7 @@ class Incomejson(models.Model):
     def __str__(self):
         return str(self.create_datetime)
     
-    @app.task(ignore_result=True)
+    #@app.task(ignore_result=True)
     def process(self):
         self.is_processed=True
 
