@@ -70,7 +70,11 @@ class Robo7TaskAdmin(admin.ModelAdmin):
         
     ]
   
+@admin.action(description="Mark selected stories as published")
+def make_published(modeladmin, request, queryset):
+    queryset.update(is_updated=True)  
 
 @admin.register(Incomejson) 
 class IncomejsonAdmin(admin.ModelAdmin):
     list_display = ['create_datetime', 'is_processed', 'text', 'json',]
+    actions = [make_published]
