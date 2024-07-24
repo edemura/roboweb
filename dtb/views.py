@@ -55,6 +55,6 @@ def recieve_json(request):
         #data = serializers.serialize("json", request.body)
         json.text=request.body
         json.save()
-        json.process()
+        #json.process()
 
     return JsonResponse({"ok": "JSON received"})
