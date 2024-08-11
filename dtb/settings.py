@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
     # local apps
     'users.apps.UsersConfig',
+
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [

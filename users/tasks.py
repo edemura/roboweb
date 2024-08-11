@@ -46,3 +46,20 @@ def broadcast_message(
     logger.info("Broadcast finished!")
 
 
+#мое
+    
+from celery import shared_task
+from users.models import Incomejson
+from time import sleep
+
+#@shared_task()
+@app.task(ignore_result=True)
+def make_true():
+    for i in Incomejson.objects():
+        if i.is_processed==True:
+            i.is_task_set=True
+        else:
+            i.is_task_set=False
+    
+    
+    

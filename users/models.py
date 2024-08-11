@@ -130,17 +130,19 @@ class Incomejson(models.Model):
 
     create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
     is_processed = models.BooleanField(null=True, default=None, verbose_name="Валидация пройдена")
+    is_task_set = models.BooleanField(null=True, default=None, verbose_name="создан таск")
     json = models.JSONField(null=True, default=None, encoder=None, decoder=None)
     text = models.TextField(null=True, default=None)
 
     def __str__(self):
         return str(self.create_datetime)
     
-    #@app.task(ignore_result=True)
+    @app.task(ignore_result=True)
     def process(self):
         self.is_processed=True
 
-
+    def undo(self):
+        self.is_processed=False
 
 
 

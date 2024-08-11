@@ -74,7 +74,12 @@ class Robo7TaskAdmin(admin.ModelAdmin):
 def make_published(modeladmin, request, queryset):
     queryset.update(is_processed=True)  
 
+@admin.action(description="Undo")
+def make_undo(modeladmin, request, queryset):
+    queryset.update(is_processed=False)  
+
+
 @admin.register(Incomejson) 
 class IncomejsonAdmin(admin.ModelAdmin):
-    list_display = ['create_datetime', 'is_processed', 'text', 'json',]
-    actions = [make_published]
+    list_display = ['create_datetime', 'is_processed', 'is_task_set', 'text', 'json',]
+    actions = [make_published, make_undo]
