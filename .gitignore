@@ -138,3 +138,6 @@ dmypy.json
 .Dockerfile.swp
 .vscode/launch.json
 .env
+
+
+requirements copy.txt
