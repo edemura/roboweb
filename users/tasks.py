@@ -58,8 +58,11 @@ def make_true():
     for i in Incomejson.objects.all():
         if i.is_processed==True:
             i.is_task_set=True
+            i.save()
+            
         else:
             i.is_task_set=False
+            i.save()
     
     
     
