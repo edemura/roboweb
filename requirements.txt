@@ -11,13 +11,13 @@ ipython==8.5.0  # enhanced python interpreter
 #django-debug-toolbar==3.6.0
 whitenoise==6.2.0  # for serving static files
 
-Django==4.2
+Django==4.0.10
 django-celery-beat==2.3.0
-django-cors-headers==3.13.0
-django-debug-toolbar==3.6.0
-django-filter==24.2
-django-timezone-field==6.1.0
-djangorestframework==3.15.2
+#django-cors-headers==3.13.0
+#django-debug-toolbar==3.6.0
+#django-filter==24.2
+#django-timezone-field==6.1.0
+#djangorestframework==3.15.2
 
 # Django 3.0 async requirements
 gunicorn==20.1.0
