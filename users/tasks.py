@@ -55,7 +55,7 @@ from time import sleep
 #@shared_task()
 @app.task(ignore_result=True)
 def make_true():
-    for i in Incomejson.objects():
+    for i in Incomejson.objects.all():
         if i.is_processed==True:
             i.is_task_set=True
         else:
