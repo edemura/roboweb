@@ -64,7 +64,7 @@ def recieve_json(request):
 from users.models import Incomejson
 from rest_framework import permissions, viewsets
 
-from users.serializers import IncomeJsonSerializer, UserSerializer
+from users.serializers import IncomeJsonSerializer
 
 
 class InconeJsonViewSet(viewsets.ModelViewSet):
@@ -72,7 +72,7 @@ class InconeJsonViewSet(viewsets.ModelViewSet):
     API endpoint that allows users to be viewed or edited.
     """
     queryset = Incomejson.objects.all().order_by('-create_datetime')
-    serializer_class = UserSerializer
+    serializer_class = IncomeJsonSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
