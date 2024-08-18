@@ -67,7 +67,7 @@ from rest_framework import permissions, viewsets
 from users.serializers import IncomeJsonSerializer
 
 
-class InconeJsonViewSet(viewsets.ModelViewSet):
+class IncomeJsonViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """

@@ -25,7 +25,7 @@ from rest_framework import routers
 
 
 router = routers.DefaultRouter()
-router.register(r'incomejsons', views.InconeJsonViewSet)
+router.register(r'incomejsons', views.IncomeJsonViewSet)
 
 
 urlpatterns = [
