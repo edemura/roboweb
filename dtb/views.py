@@ -64,7 +64,7 @@ def recieve_json(request):
 from users.models import Incomejson
 from rest_framework import permissions, viewsets
 
-from dtb.users.serializers import IncomeJsonSerializer, UserSerializer
+from users.serializers import IncomeJsonSerializer, UserSerializer
 
 
 class InconeJsonViewSet(viewsets.ModelViewSet):
