@@ -81,5 +81,5 @@ def make_undo(modeladmin, request, queryset):
 
 @admin.register(Incomejson) 
 class IncomejsonAdmin(admin.ModelAdmin):
-    list_display = ['create_datetime', 'is_processed', 'is_task_set', 'text', 'json',]
+    list_display = ['id','create_datetime', 'is_processed', 'is_task_set', 'text', 'json',]
     actions = [make_published, make_undo]
