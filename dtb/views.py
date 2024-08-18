@@ -58,3 +58,21 @@ def recieve_json(request):
         #json.process()
 
     return JsonResponse({"ok": "JSON received"})
+
+#DRF
+
+from models import Incomejson
+from rest_framework import permissions, viewsets
+
+from dtb.users.serializers import IncomeJsonSerializer, UserSerializer
+
+
+class InconeJsonViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Incomejson.objects.all().order_by('-create_datetime')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+

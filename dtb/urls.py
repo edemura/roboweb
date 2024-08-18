@@ -20,11 +20,25 @@ from django.views.decorators.csrf import csrf_exempt
 
 from . import views
 
+#DRF
+from rest_framework import routers
+
+
+router = routers.DefaultRouter()
+router.register(r'incomejsons', views.InconeJsonViewSet)
+
+
 urlpatterns = [
     path('tgadmin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
     path('', views.index, name="index"),
     path('super_secter_webhook/', csrf_exempt(views.TelegramBotWebhookView.as_view())),
     path('import/',views.recieve_json, name="recieve_json"),
-    path('api-auth/', include('rest_framework.urls'))
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
+
+
+
+
+
