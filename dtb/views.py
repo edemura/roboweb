@@ -61,7 +61,7 @@ def recieve_json(request):
 
 #DRF
 
-from models import Incomejson
+from users.models import Incomejson
 from rest_framework import permissions, viewsets
 
 from dtb.users.serializers import IncomeJsonSerializer, UserSerializer
