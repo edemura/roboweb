@@ -1,4 +1,4 @@
-from models import Incomejson
+from .models import Incomejson
 from rest_framework import serializers
 
 
