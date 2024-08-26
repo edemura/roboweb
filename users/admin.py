@@ -66,13 +66,13 @@ class LocationAdmin(admin.ModelAdmin):
 @admin.register(Robo7Task) 
 class Robo7TaskAdmin(admin.ModelAdmin):
     list_display=['patient_fio', 'analysis', 'code', 'tray_num', 'is_tray_assigned',
-                  'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'update_datetime', 'filenameok','tray_num_task', 'exception_text',]
+                  'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'update_datetime', 'create_datetime', 'filenameok','tray_num_task', 'exception_text',]
     fieldsets = [
         (None, {"fields": ['patient_fio', 'analysis', 'code', 'tray_num', 'is_tray_assigned',
-                  'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'update_datetime','filenameok','tray_num_task','exception_text',]}),
+                  'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'update_datetime','create_datetime','filenameok','tray_num_task','exception_text',]}),
         
     ]
-    readonly_fields =[  'create_datetime',]
+    readonly_fields = ('create_datetime')
   
 @admin.action(description="Mark selected stories as published")
 def make_published(modeladmin, request, queryset):
