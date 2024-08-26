@@ -65,7 +65,7 @@ def make_true():
             i.is_task_set=False
             i.save()
     
-    
+"""   
 @app.task(ignore_result=True)
 def make_robo7Task():
     for i in TaskJson.objects.exclude(is_task_set=True):
@@ -82,7 +82,7 @@ def make_robo7Task():
             i.is_task_set=False
             i.exception_text=f"Failed to make task {type(e)}, reason: {e}"
             i.save() 
-
+"""
         '''
         if i.is_processed==True:
             i.is_task_set=True
