@@ -70,7 +70,7 @@ def make_true():
 def make_robo7Task():
     for i in TaskJson.objects.exclude(is_task_set=True):
         try:
-            task=Robo7Task
+            task=Robo7Task()
             task.patient_fio=i.last_name+' '+i.first_name+' '+i.middle_name
             task.analysis=i.analysis_name
             task.code=i.barcode
