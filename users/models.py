@@ -120,7 +120,7 @@ class Robo7Task(models.Model):
     return self.patient_fio+' '+self.code+' '+str(self.create_datetime)
   
 
-#входящий JSON неразобранный
+#входящий JSON неразобранный тестовый
 
 class Incomejson(models.Model):
 
@@ -145,12 +145,108 @@ class Incomejson(models.Model):
         self.is_processed=False
 
 
+#входящий JSON неразобранный таск
+# Добавить сериализатор и обработку апи
+
+class TaskJson(models.Model):
+
+    class Meta:
+        verbose_name=_('Входящие JSON')
+        verbose_name_plural=_('Входящие JSON')
+
+    create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
+    is_task_set = models.BooleanField(null=True, default=None, verbose_name="создан таск")
+
+    first_name=models.TextField(null=True, default=None, verbose_name="Имя пациента")
+    last_name=models.TextField(null=True, default=None, verbose_name="Фамилия пациента")
+    middle_name=models.TextField(null=True, default=None, verbose_name="Отчество пациента")
+    analysis_name=models.TextField(null=True, default=None, verbose_name="Наименование исследования")
+    analysis_code=models.TextField(null=True, default=None, verbose_name="Код исследования")
+
+    def __str__(self):
+        return str(self.create_datetime)
 
 
 
+#имя файла для задания
+class Filename:
+    template='{terminal_host},{terminal_robo7},{date},{tray_number},{last_tube},{seq_tray},{queue},{patient_id},{patient_name},{container_name},{sample_volume},{department_name},{number_of_labels},{stocker_code},{rfid},{priority}'
+    templateok='{terminal_host},{terminal_robo7},{date},{tray_number},OK'
+    terminal_host='0005'
+    terminal_robo7='0001'
+    date='1213'
+    #tray_number='0032'
+    tray_number='0001'
+    last_tube='9'
+    seq_tray='01'
+    queue='1234'
+    patient_id='0123456789'
+    patient_name='Ivan Petrov'
+    container_name='HbA1c'
+    sample_volume='1.0'
+    department_name='Pediatrics'
+    number_of_labels='1'
+    stocker_code='01'
+    rfid=''
+    priority='0'
+    
+
+    def make(self):
+       tmpl=self.template.format(terminal_host=self.terminal_host,
+                                 terminal_robo7=self.terminal_robo7,
+                                 date=self.date,
+                                 tray_number=self.tray_number,
+                                 last_tube=self.last_tube,
+                                 seq_tray=self.seq_tray,
+                                 queue=self.queue,
+                                 patient_id=self.patient_id,
+                                 patient_name=self.patient_name,
+                                 container_name=self.container_name,
+                                 sample_volume=self.sample_volume,
+                                 department_name=self.department_name,
+                                 number_of_labels=self.number_of_labels,
+                                 stocker_code=self.stocker_code,
+                                 rfid=self.rfid,
+                                 priority=self.priority)
+       
+       return tmpl
+    
+    def makeok(self):
+       tmpl=self.templateok.format(terminal_host=self.terminal_host,
+                                 terminal_robo7=self.terminal_robo7,
+                                 date=self.date,
+                                 tray_number=self.tray_number,
+                                 )
+       
+       return tmpl
 
 
+# Содержимое файла для задания
+class Label:
+   template='BAR|{x_pos}^{y_pos}^{height}^{barcode_type}^{code_type}^{narrow_width}^{wide_width}^{check_digit}^{draw_direction}^{barcode_data}|CR'
+   x_pos='2'
+   y_pos='2'
+   height='15'
+   barcode_type='7'
+   code_type='1'
+   narrow_width='4'
+   wide_width='8'
+   check_digit='1'
+   draw_direction='0'
+   barcode_data='11111'
 
+   def make(self):
+      lbl=self.template.format(x_pos=self.x_pos,                         
+            y_pos=self.y_pos,
+            height=self.height,
+            barcode_type=self.barcode_type,
+            code_type=self.code_type,
+            narrow_width=self.narrow_width,
+            wide_width=self.wide_width,
+            check_digit=self.check_digit,
+            draw_direction=self.draw_direction,
+            barcode_data=self.barcode_data)
+      return lbl
 
 
 

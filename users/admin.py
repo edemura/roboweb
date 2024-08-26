@@ -8,6 +8,7 @@ from users.models import Location
 from users.models import User
 from users.models import Robo7Task
 from users.models import Incomejson
+from users.models import TaskJson
 
 from users.forms import BroadcastForm
 
@@ -83,3 +84,8 @@ def make_undo(modeladmin, request, queryset):
 class IncomejsonAdmin(admin.ModelAdmin):
     list_display = ['id','create_datetime', 'is_processed', 'is_task_set', 'text', 'json',]
     actions = [make_published, make_undo]
+
+@admin.register(TaskJson) 
+class TaskJsonAdmin(admin.ModelAdmin):
+    list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'middle_name', 'analysis_name', 'analysis_code',]
+    
