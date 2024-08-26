@@ -51,6 +51,7 @@ def broadcast_message(
 from celery import shared_task
 from users.models import Incomejson, TaskJson, Robo7Task
 from time import sleep
+from datetime import datetime
 
 #@shared_task()
 @app.task(ignore_result=True)
@@ -73,6 +74,7 @@ def make_robo7Task():
             task.patient_fio=i.last_name+' '+i.first_name+' '+i.middle_name
             task.analysis=i.analysis_name
             task.code=i.barcode
+            task.create_datetime=datetime.now()
             task.save()
             i.is_task_set=True
             i.save()
