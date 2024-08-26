@@ -10,6 +10,8 @@ from users.models import Robo7Task
 from users.models import Incomejson
 from users.models import TaskJson
 
+from users.models import TubeType, TrayTube, Analysis, AnalysisSet
+
 from users.forms import BroadcastForm
 
 from users.tasks import broadcast_message
@@ -89,3 +91,25 @@ class IncomejsonAdmin(admin.ModelAdmin):
 class TaskJsonAdmin(admin.ModelAdmin):
     list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'middle_name', 'analysis_name', 'analysis_code', 'barcode', 'exception_text',]
     
+
+#Пробирки и все остальное
+admin.site.register(TubeType)
+
+class TrayTubeInline(admin.StackedInline):
+    model = TrayTube
+    extra = 3 
+
+class AnalysisInline(admin.StackedInline):
+    model = Analysis
+    extra = 3 
+
+class AnalysisSetAdmin(admin.ModelAdmin):
+    
+    list_display = ["set", "active"]
+    fieldsets = [
+        (None, {"fields": ["set", "active"]}),
+        
+    ]
+    inlines = [AnalysisInline, TrayTubeInline]
+
+admin.site.register(AnalysisSet, AnalysisSetAdmin) 

@@ -249,3 +249,80 @@ class Label:
             draw_direction=self.draw_direction,
             barcode_data=self.barcode_data)
       return lbl
+
+# Типы пробирок
+
+class TubeType(models.Model):
+
+  class Meta:
+     verbose_name=_('Тип пробирки')
+     verbose_name_plural=_('Виды пробирок')
+  
+  volume = models.CharField(max_length=255, verbose_name="Объем")
+  color = models.CharField(max_length=255, verbose_name="Цвет")
+  filler = models.CharField(max_length=255, verbose_name="Наполнитель")
+  def __str__(self):
+    return self.volume+' '+self.color+' '+self.filler
+
+
+# Пробирки в лотках
+
+class TrayTube(models.Model):
+
+  class Meta:
+     verbose_name=_('Лоток')
+     verbose_name_plural=_('Расположение видов пробирок в лотках')
+
+  set = models.ForeignKey(
+        "webadmin.AnalysisSet",
+        on_delete=models.CASCADE,
+        verbose_name="Набор исследований"
+    )
+
+  tube_type = models.ForeignKey(
+        "webadmin.TubeType",
+        on_delete=models.CASCADE,
+        verbose_name="Тип пробирок"
+    )
+  
+  tray = models.IntegerField(unique=True, verbose_name="Номер лотка")
+
+  def __str__(self):
+    return '#'+str(self.tray)
+
+
+# Наборы исследований
+
+class AnalysisSet(models.Model):
+  
+  class Meta:
+     verbose_name=_('Набор исследования')
+     verbose_name_plural=_('Наборы исследования')
+
+  set = models.CharField(max_length=255, verbose_name="Наборы исследований")
+  active = models.BooleanField(null=False, default=False, verbose_name="Активный набор")   
+
+  def __str__(self):
+    return self.set
+# Исследования        
+
+class Analysis(models.Model):
+
+  class Meta:
+     verbose_name=_('Вид исследования')
+     verbose_name_plural=_('Виды исследований')
+
+  set = models.ForeignKey(
+        "webadmin.AnalysisSet",
+        on_delete=models.CASCADE,
+        verbose_name="Набор исследований"
+    )
+  tube_type = models.ForeignKey(
+      "webadmin.TubeType",
+      on_delete=models.CASCADE,
+      verbose_name="Тип пробирки"
+  )
+  analysis_name = models.CharField(max_length=255, verbose_name="Вид исследования")
+
+  def __str__(self):
+    return self.analysis_name
