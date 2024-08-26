@@ -67,7 +67,7 @@ def make_true():
     
 @app.task(ignore_result=True)
 def make_robo7Task():
-    for i in TaskJson.objects.filter(is_task_set=None):
+    for i in TaskJson.objects.exclude(is_task_set=True):
         try:
             task=Robo7Task
             task.patient_fio=i.last_name+' '+i.first_name+' '+i.middle_name
