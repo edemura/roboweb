@@ -78,8 +78,9 @@ def make_robo7Task():
             task.save()
             i.is_task_set=True
             i.save()
-        except:
+        except Exception as e:
             i.is_task_set=False
+            i.exception=e
             i.save() 
 
         '''
