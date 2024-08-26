@@ -49,7 +49,7 @@ def broadcast_message(
 #мое
     
 from celery import shared_task
-from users.models import Incomejson
+from users.models import Incomejson, TaskJson, Robo7Task
 from time import sleep
 
 #@shared_task()
@@ -65,4 +65,26 @@ def make_true():
             i.save()
     
     
-    
+@app.task(ignore_result=True)
+def make_robo7Task():
+    for i in TaskJson.objects.filter(is_task_set=None):
+        try:
+            task=Robo7Task
+            task.patient_fio=i.last_name+' '+i.first_name+' '+i.middle_name
+            task.analysis=i.analysis_name
+            task.save()
+            i.is_task_set=True
+            i.save()
+        except:
+            i.is_task_set=False
+            i.save() 
+
+        '''
+        if i.is_processed==True:
+            i.is_task_set=True
+            i.save()
+            
+        else:
+            i.is_task_set=False
+            i.save()    
+            '''
