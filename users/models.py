@@ -250,6 +250,21 @@ class Label:
             barcode_data=self.barcode_data)
       return lbl
 
+
+# Наборы исследований
+
+class AnalysisSet(models.Model):
+  
+  class Meta:
+     verbose_name=_('Набор исследования')
+     verbose_name_plural=_('Наборы исследования')
+
+  set = models.CharField(max_length=255, verbose_name="Наборы исследований")
+  active = models.BooleanField(null=False, default=False, verbose_name="Активный набор")   
+
+  def __str__(self):
+    return self.set
+
 # Типы пробирок
 
 class TubeType(models.Model):
@@ -290,20 +305,6 @@ class TrayTube(models.Model):
   def __str__(self):
     return '#'+str(self.tray)
 
-
-# Наборы исследований
-
-class AnalysisSet(models.Model):
-  
-  class Meta:
-     verbose_name=_('Набор исследования')
-     verbose_name_plural=_('Наборы исследования')
-
-  set = models.CharField(max_length=255, verbose_name="Наборы исследований")
-  active = models.BooleanField(null=False, default=False, verbose_name="Активный набор")   
-
-  def __str__(self):
-    return self.set
 # Исследования        
 
 class Analysis(models.Model):
