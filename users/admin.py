@@ -87,5 +87,5 @@ class IncomejsonAdmin(admin.ModelAdmin):
 
 @admin.register(TaskJson) 
 class TaskJsonAdmin(admin.ModelAdmin):
-    list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'middle_name', 'analysis_name', 'analysis_code',]
+    list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'middle_name', 'analysis_name', 'analysis_code', 'barcode',]
     
