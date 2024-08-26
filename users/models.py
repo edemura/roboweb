@@ -151,8 +151,8 @@ class Incomejson(models.Model):
 class TaskJson(models.Model):
 
     class Meta:
-        verbose_name=_('Входящие JSON')
-        verbose_name_plural=_('Входящие JSON')
+        verbose_name=_('Входящие JSON таск')
+        verbose_name_plural=_('Входящие JSON таск')
 
     create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
     is_task_set = models.BooleanField(null=True, default=None, verbose_name="создан таск")
