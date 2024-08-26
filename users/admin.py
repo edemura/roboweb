@@ -66,10 +66,10 @@ class LocationAdmin(admin.ModelAdmin):
 @admin.register(Robo7Task) 
 class Robo7TaskAdmin(admin.ModelAdmin):
     list_display=['patient_fio', 'analysis', 'code', 'tray_num', 'is_tray_assigned',
-                  'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'create_datetime', 'update_datetime', 'filenameok','tray_num_task',]
+                  'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'create_datetime', 'update_datetime', 'filenameok','tray_num_task', 'exception_text',]
     fieldsets = [
         (None, {"fields": ['patient_fio', 'analysis', 'code', 'tray_num', 'is_tray_assigned',
-                  'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'create_datetime', 'update_datetime','filenameok','tray_num_task',]}),
+                  'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'create_datetime', 'update_datetime','filenameok','tray_num_task','exception_text',]}),
         
     ]
   

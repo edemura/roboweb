@@ -115,6 +115,7 @@ class Robo7Task(models.Model):
   create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
   update_datetime = models.DateTimeField(null=True, auto_now=True, auto_now_add=False, verbose_name='Изменено')
   tray_num_task = models.IntegerField(null=True, default=0, verbose_name="tray num за текущую дату")
+  exception_text=models.TextField(null=True, default=None, verbose_name="Ошибка")
 
   def __str__(self):
     return self.patient_fio+' '+self.code+' '+str(self.create_datetime)
