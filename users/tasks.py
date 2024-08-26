@@ -72,6 +72,7 @@ def make_robo7Task():
             task=Robo7Task
             task.patient_fio=i.last_name+' '+i.first_name+' '+i.middle_name
             task.analysis=i.analysis_name
+            task.code=i.barcode
             task.save()
             i.is_task_set=True
             i.save()

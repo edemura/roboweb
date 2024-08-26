@@ -162,6 +162,8 @@ class TaskJson(models.Model):
     middle_name=models.TextField(null=True, default=None, verbose_name="Отчество пациента")
     analysis_name=models.TextField(null=True, default=None, verbose_name="Наименование исследования")
     analysis_code=models.TextField(null=True, default=None, verbose_name="Код исследования")
+    barcode=models.TextField(null=True, default=None, verbose_name="Штрих-код")
+
 
     def __str__(self):
         return str(self.create_datetime)
