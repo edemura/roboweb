@@ -87,13 +87,18 @@ def make_robo7Task():
 @app.task(ignore_result=True)
 def tray_assign():
     for i in Robo7Task.objects.exclude(is_tray_assigned=True):
-        an=Analysis.objects.filter(set=AnalysisSet.objects.get(active=True), analysis_name=i.analysis)
-        tube_type=an[0].tube_type
-        tray_tube=TrayTube.objects.filter(tube_type=tube_type)[0]
-        if tray_tube!=None:
-            i.tray_num=tray_tube.tray
-            i.is_tray_assigned=True
-        else:
+        try:
+            an=Analysis.objects.filter(set=AnalysisSet.objects.get(active=True), analysis_name=i.analysis)
+            tube_type=an[0].tube_type
+            tray_tube=TrayTube.objects.filter(tube_type=tube_type)[0]
+            if tray_tube!=None:
+                i.tray_num=tray_tube.tray
+                i.is_tray_assigned=True
+            else:
+                i.is_tray_assigned=False
+                i.exception_text=f"Для вида исследования {i.analysis}, не найдено доступных видов пробирок"
+            i.save()
+        except Exception as e:
             i.is_tray_assigned=False
-            i.exception_text=f"Для вида исследования {i.analysis}, не найдено доступных видов пробирок"
-        i.save()
+            i.exception_text=f"Failed to assign tray {type(e)}, reason: {e}"
+            i.save()
