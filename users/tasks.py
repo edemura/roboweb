@@ -80,7 +80,7 @@ def make_robo7Task():
             i.save()
         except Exception as e:
             i.is_task_set=False
-            i.exception=e.__str__()
+            i.exception_text=f"Failed to make task for {id}, reason: {e}"
             i.save() 
 
         '''
