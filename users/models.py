@@ -323,8 +323,8 @@ class Analysis(models.Model):
       on_delete=models.CASCADE,
       verbose_name="Тип пробирки"
   )
-  analysis_name = models.CharField(max_length=255, verbose_name="Вид исследования(наименование)")
-  analysis_code = models.CharField(max_length=255, verbose_name="Вид исследования(Код)")
+  analysis_name = models.CharField(max_length=255, default="Новый вид исследования", verbose_name="Вид исследования(наименование)")
+  analysis_code = models.CharField(max_length=255, default="Новый код исследования", verbose_name="Вид исследования(Код)")
 
   def __str__(self):
     return self.analysis_name
