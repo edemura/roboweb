@@ -72,7 +72,7 @@ class Robo7TaskAdmin(admin.ModelAdmin):
                   'is_validated', 'filename', 'is_filename', 'label', 'is_label', 'is_sent', 'is_complete', 'update_datetime','create_datetime','filenameok','tray_num_task','exception_text',]}),
         
     ]
-    readonly_fields = ('create_datetime')
+    readonly_fields = ('create_datetime',)
   
 @admin.action(description="Mark selected stories as published")
 def make_published(modeladmin, request, queryset):
