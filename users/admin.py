@@ -113,3 +113,7 @@ class AnalysisSetAdmin(admin.ModelAdmin):
     inlines = [AnalysisInline, TrayTubeInline]
 
 admin.site.register(AnalysisSet, AnalysisSetAdmin) 
+
+@admin.register(Analysis) 
+class AnalysisAdmin(admin.ModelAdmin):
+    list_display = ['analysis_name','analysis_code', 'set', 'tube_type',]
