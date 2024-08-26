@@ -289,13 +289,13 @@ class TrayTube(models.Model):
      verbose_name_plural=_('Расположение видов пробирок в лотках')
 
   set = models.ForeignKey(
-        "webadmin.AnalysisSet",
+        "users.AnalysisSet",
         on_delete=models.CASCADE,
         verbose_name="Набор исследований"
     )
 
   tube_type = models.ForeignKey(
-        "webadmin.TubeType",
+        "users.TubeType",
         on_delete=models.CASCADE,
         verbose_name="Тип пробирок"
     )
@@ -314,12 +314,12 @@ class Analysis(models.Model):
      verbose_name_plural=_('Виды исследований')
 
   set = models.ForeignKey(
-        "webadmin.AnalysisSet",
+        "users.AnalysisSet",
         on_delete=models.CASCADE,
         verbose_name="Набор исследований"
     )
   tube_type = models.ForeignKey(
-      "webadmin.TubeType",
+      "users.TubeType",
       on_delete=models.CASCADE,
       verbose_name="Тип пробирки"
   )
