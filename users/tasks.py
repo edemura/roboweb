@@ -94,11 +94,13 @@ def tray_assign():
             if tray_tube!=None:
                 i.tray_num=tray_tube.tray
                 i.is_tray_assigned=True
+                i.is_validated=True
             else:
                 i.is_tray_assigned=False
                 i.exception_text=f"Для вида исследования {i.analysis}, не найдено доступных видов пробирок"
             i.save()
         except Exception as e:
             i.is_tray_assigned=False
+            i.is_validated=True
             i.exception_text=f"Failed to assign tray {type(e)}, reason: {e}"
             i.save()
