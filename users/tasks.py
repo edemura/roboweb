@@ -49,7 +49,7 @@ def broadcast_message(
 #мое
     
 from celery import shared_task
-from users.models import Incomejson, TaskJson, Robo7Task, Analysis, AnalysisSet, TrayTube
+from users.models import Incomejson, TaskJson, Robo7Task, Analysis, AnalysisSet, TrayTube, Filename
 from time import sleep
 from datetime import datetime
 
@@ -103,4 +103,34 @@ def tray_assign():
             i.is_tray_assigned=False
             i.is_validated=True
             i.exception_text=f"Failed to assign tray {type(e)}, reason: {e}"
+            i.save()
+
+
+#Формирование имени файла
+@app.task(ignore_result=True)
+def filename_generate():
+    for i in Robo7Task.objects.filter(is_validated=True):
+        try:
+            
+            name=Filename()
+            name.date=datetime.now().strftime('%m%d')
+            name.stocker_code=='0'+str(i.tray_num)
+            #Описать смысл следующей строки
+            name.tray_number=(4-len(str(i.tray_num_task)))*0+str(i.tray_num_task)
+
+            filename=name.make()
+            filenameok=name.makeok()
+        
+            if filename!=None:
+                i.filename=filename
+                i.filenameok=filenameok
+                i.is_filename=True
+                i.save()
+            else:
+                i.is_filename=False
+                i.save()
+        except Exception as e:    
+            
+            i.is_filename=False
+            i.exception_text=f"Failed to make filename {type(e)}, reason: {e}"
             i.save()
