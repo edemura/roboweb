@@ -174,7 +174,7 @@ def send_to_robo7():
             
         file_to_open_dat=folder / (i.filename+'.dat')
         file_to_open_def=folder / (i.filename+',DEF.TXT')
-        
+
         try:    
             with open(file_to_open_dat,'w') as file:
                 file.write(i.label)
@@ -196,23 +196,26 @@ def send_to_robo7():
 @app.task(ignore_result=True)
 def check_robo7_complete():
     
-    folder='out'
+    folder=Path('DATA/')
     for i in Robo7Task.objects.filter(is_sent=True):
         
+        file_to_open_ok=folder / (i.filenameok)
+        file_to_open_dat=folder / (i.filename+'.dat')
+        file_to_open_def=folder / (i.filename+',DEF.TXT')
 
         #path=r'C:\\roboweb\robo7tools\webadmin\get'
         #path=r'C:\\robo7_data\PRINT\DATA'
-        path=r'/DATA'
+        
         if len(os.listdir(path=path))!=0:
                 
             #for filename in os.listdir(path=path):
             
-                if os.path.exists((path+'/'+i.filenameok))!=-1:
+                if os.path.exists(file_to_open_ok)!=-1:
 
                     try:    
-                        os.remove((path+'/'+i.filenameok))
-                        os.remove((path+'/'+i.filename+'.dat'))
-                        os.remove((path+'/'+i.filename+',DEF.TXT'))
+                        os.remove(file_to_open_ok)
+                        os.remove(file_to_open_dat)
+                        os.remove(file_to_open_def)
 
                         i.is_complete=True
                         i.save()
