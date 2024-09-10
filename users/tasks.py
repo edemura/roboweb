@@ -12,6 +12,7 @@ from celery.utils.log import get_task_logger
 from tgbot.handlers.broadcast_message.utils import send_one_message, from_celery_entities_to_entities, \
     from_celery_markup_to_markup
 import os
+from pathlib import Path
 
 logger = get_task_logger(__name__)
 
@@ -167,15 +168,17 @@ def send_to_robo7():
     
     #folder='out'
     #folder=r'C:\\robo7_data\PRINT\DATA'
-    path=r'/DATA'
+    folder=Path('DATA/')
+    file_to_open_dat=folder / (i.filename+'.dat')
+    file_to_open_def=folder / (i.filename+',DEF.TXT')
     for i in Robo7Task.objects.filter(is_filename=True, is_label=True, is_sent=(False or None)):
         
         try:    
-            with open(path+'/'+i.filename+'.dat','w') as file:
+            with open(file_to_open_dat,'w') as file:
                 file.write(i.label)
                 file.close()
 
-            with open(path+'/'+i.filename+',DEF.TXT','w') as file:
+            with open(file_to_open_def,'w') as file:
                 file.write('')
                 file.close()
 
