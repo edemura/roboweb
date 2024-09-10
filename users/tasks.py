@@ -210,14 +210,14 @@ def check_robo7_complete():
                 
             #for filename in os.listdir(path=path):
             
-                if os.path.exists(file_to_open_ok)!=-1:
-                    if os.path.exists(file_to_open_dat)!=-1:
+                if os.path.exists(file_to_open_ok):
+                    if os.path.exists(file_to_open_dat):
                         try:
                             os.remove(file_to_open_dat)
                         except:
                             pass
 
-                    if os.path.exists(file_to_open_def)!=-1:
+                    if os.path.exists(file_to_open_def):
                         try:
                             os.remove(file_to_open_def)
                         except:
