@@ -19,9 +19,17 @@ app.autodiscover_tasks()
 app.conf.enable_utc = False
 
 app.conf.beat_schedule = {
-    "label_generate": {  # уникальное название задачи
-        "task": 'users.tasks.label_generate',  # путь к задаче
+    "tray_assign": {  # уникальное название задачи
+        "task": 'users.tasks.tray_assign',  # путь к задаче
         "schedule": timedelta(seconds=1),  # интервал, через который будет выполняться задача
+    },
+    "filename_generate": {  
+        "task": 'users.tasks.filename_generate',  
+        "schedule": timedelta(seconds=1),  
+    },
+    "label_generate": {  
+        "task": 'users.tasks.label_generate', 
+        "schedule": timedelta(seconds=1),  
     },
      "send_to_robo7": {  
         "task": 'users.tasks.send_to_robo7',  
