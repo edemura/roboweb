@@ -176,13 +176,14 @@ def send_to_robo7():
         file_to_open_def=folder / (i.filename+',DEF.TXT')
 
         try:    
-            with open(file_to_open_dat,'w') as file:
-                file.write(i.label)
-                file.close()
-
-            with open(file_to_open_def,'w') as file:
-                file.write('')
-                file.close()
+            if not os.path.exists(file_to_open_dat):
+                with open(file_to_open_dat,'w') as file:
+                    file.write(i.label)
+                    file.close()
+            if not os.path.exists(file_to_open_def):
+                with open(file_to_open_def,'w') as file:
+                    file.write('')
+                    file.close()
 
             i.is_sent=True
             i.save()
