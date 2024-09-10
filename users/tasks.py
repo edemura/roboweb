@@ -169,9 +169,11 @@ def send_to_robo7():
     #folder='out'
     #folder=r'C:\\robo7_data\PRINT\DATA'
     folder=Path('DATA/')
-    file_to_open_dat=folder / (i.filename+'.dat')
-    file_to_open_def=folder / (i.filename+',DEF.TXT')
+
     for i in Robo7Task.objects.filter(is_filename=True, is_label=True, is_sent=(False or None)):
+            
+        file_to_open_dat=folder / (i.filename+'.dat')
+        file_to_open_def=folder / (i.filename+',DEF.TXT')
         
         try:    
             with open(file_to_open_dat,'w') as file:
