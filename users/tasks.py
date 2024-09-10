@@ -167,7 +167,7 @@ def send_to_robo7():
     
     #folder='out'
     #folder=r'C:\\robo7_data\PRINT\DATA'
-    path=r'~/DATA'
+    path=r'/DATA'
     for i in Robo7Task.objects.filter(is_filename=True, is_label=True, is_sent=(False or None)):
         
         try:    
@@ -197,7 +197,7 @@ def check_robo7_complete():
 
         #path=r'C:\\roboweb\robo7tools\webadmin\get'
         #path=r'C:\\robo7_data\PRINT\DATA'
-        path=r'~/DATA'
+        path=r'/DATA'
         if len(os.listdir(path=path))!=0:
                 
             #for filename in os.listdir(path=path):
