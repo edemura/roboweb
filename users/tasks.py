@@ -171,7 +171,7 @@ def send_to_robo7():
     for i in Robo7Task.objects.filter(is_filename=True, is_label=True, is_sent=(False or None)):
         
         try:    
-            with open(path+'\\'+i.filename+'.dat','w') as file:
+            with open(path+'/'+i.filename+'.dat','w') as file:
                 file.write(i.label)
                 file.close()
 
@@ -202,12 +202,12 @@ def check_robo7_complete():
                 
             #for filename in os.listdir(path=path):
             
-                if os.path.exists((path+'\\'+i.filenameok))!=-1:
+                if os.path.exists((path+'/'+i.filenameok))!=-1:
 
                     try:    
-                        os.remove((path+'\\'+i.filenameok))
-                        os.remove((path+'\\'+i.filename+'.dat'))
-                        os.remove((path+'\\'+i.filename+',DEF.TXT'))
+                        os.remove((path+'/'+i.filenameok))
+                        os.remove((path+'/'+i.filename+'.dat'))
+                        os.remove((path+'/'+i.filename+',DEF.TXT'))
 
                         i.is_sent=True
                         i.save()
