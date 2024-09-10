@@ -164,18 +164,18 @@ def label_generate():
 #Отправка задания на robo7
 @app.task(ignore_result=True)
 def send_to_robo7():
-    print('6. sending to robo7 is running')
+    
     #folder='out'
     #folder=r'C:\\robo7_data\PRINT\DATA'
-    path=r'~\DATA'
+    path=r'DATA'
     for i in Robo7Task.objects.filter(is_filename=True, is_label=True, is_sent=(False or None)):
         
         try:    
-            with open(folder+'\\'+i.filename+'.dat','w') as file:
+            with open(path+'\\'+i.filename+'.dat','w') as file:
                 file.write(i.label)
                 file.close()
 
-            with open(folder+'/'+i.filename+',DEF.TXT','w') as file:
+            with open(path+'/'+i.filename+',DEF.TXT','w') as file:
                 file.write('')
                 file.close()
 
@@ -190,24 +190,24 @@ def send_to_robo7():
 #Проверка выполнения задач прибором
 @app.task(ignore_result=True)
 def check_robo7_complete():
-    print('7. Checking comliance of robo7 tasks is running')
+    
     folder='out'
     for i in Robo7Task.objects.filter(is_sent=True):
         
 
         #path=r'C:\\roboweb\robo7tools\webadmin\get'
         #path=r'C:\\robo7_data\PRINT\DATA'
-        path=r'~\DATA'
+        path=r'DATA'
         if len(os.listdir(path=path))!=0:
                 
             #for filename in os.listdir(path=path):
             
-                if os.path.exists((folder+'\\'+i.filenameok))!=-1:
+                if os.path.exists((path+'\\'+i.filenameok))!=-1:
 
                     try:    
-                        os.remove((folder+'\\'+i.filenameok))
-                        os.remove((folder+'\\'+i.filename+'.dat'))
-                        os.remove((folder+'\\'+i.filename+',DEF.TXT'))
+                        os.remove((path+'\\'+i.filenameok))
+                        os.remove((path+'\\'+i.filename+'.dat'))
+                        os.remove((path+'\\'+i.filename+',DEF.TXT'))
 
                         i.is_sent=True
                         i.save()
