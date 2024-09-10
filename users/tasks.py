@@ -209,9 +209,9 @@ def check_robo7_complete():
                         os.remove((path+'/'+i.filename+'.dat'))
                         os.remove((path+'/'+i.filename+',DEF.TXT'))
 
-                        i.is_sent=True
+                        i.is_complete=True
                         i.save()
                     except Exception as e:
-                        i.is_sent=False
+                        i.is_complete=False
                         i.exception_text=f"Failed to recieve result from robo7 {type(e)}, reason: {e}"
                         i.save()
