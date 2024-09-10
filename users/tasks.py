@@ -49,7 +49,7 @@ def broadcast_message(
 #мое
     
 from celery import shared_task
-from users.models import Incomejson, TaskJson, Robo7Task, Analysis, AnalysisSet, TrayTube, Filename
+from users.models import Incomejson, TaskJson, Robo7Task, Analysis, AnalysisSet, TrayTube, Filename, Label
 from time import sleep
 from datetime import datetime
 
@@ -133,4 +133,29 @@ def filename_generate():
             
             i.is_filename=False
             i.exception_text=f"Failed to make filename {type(e)}, reason: {e}"
+            i.save()
+
+#Формирование этикетки
+@app.task(ignore_result=True)
+def label_generate():
+    
+    for i in Robo7Task.objects.filter(is_validated=True):
+        try:
+            label=Label()
+            label.barcode_data=i.code
+
+
+            labeltext=label.make()
+            
+
+            if labeltext!=None:
+                i.label=labeltext
+                i.is_label=True
+                i.save()
+            else:
+                i.is_label=False
+                i.save()
+        except Exception as e:
+            i.is_label=False
+            i.exception_text=f"Failed to make label {type(e)}, reason: {e}"
             i.save()
