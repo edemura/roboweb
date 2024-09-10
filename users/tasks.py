@@ -206,7 +206,7 @@ def check_robo7_complete():
         #path=r'C:\\roboweb\robo7tools\webadmin\get'
         #path=r'C:\\robo7_data\PRINT\DATA'
         
-        if len(os.listdir(path=path))!=0:
+        if len(os.listdir(path=folder))!=0:
                 
             #for filename in os.listdir(path=path):
             
