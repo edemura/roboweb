@@ -11,6 +11,7 @@ from dtb.celery import app
 from celery.utils.log import get_task_logger
 from tgbot.handlers.broadcast_message.utils import send_one_message, from_celery_entities_to_entities, \
     from_celery_markup_to_markup
+import os
 
 logger = get_task_logger(__name__)
 
@@ -159,3 +160,56 @@ def label_generate():
             i.is_label=False
             i.exception_text=f"Failed to make label {type(e)}, reason: {e}"
             i.save()
+
+#Отправка задания на robo7
+@app.task(ignore_result=True)
+def send_to_robo7():
+    print('6. sending to robo7 is running')
+    #folder='out'
+    folder=r'C:\\robo7_data\PRINT\DATA'
+    for i in Robo7Task.objects.filter(is_filename=True, is_label=True, is_sent=(False or None)):
+        
+        try:    
+            with open(folder+'\\'+i.filename+'.dat','w') as file:
+                file.write(i.label)
+                file.close()
+
+            with open(folder+'/'+i.filename+',DEF.TXT','w') as file:
+                file.write('')
+                file.close()
+
+            i.is_sent=True
+            i.save()
+        except Exception as e:
+            i.is_sent=False
+            i.exception_text=f"Failed to send file to robo7 {type(e)}, reason: {e}"
+            i.save()
+
+
+#Проверка выполнения задач прибором
+@app.task(ignore_result=True)
+def check_robo7_complete():
+    print('7. Checking comliance of robo7 tasks is running')
+    folder='out'
+    for i in Robo7Task.objects.filter(is_sent=True):
+        
+
+        #path=r'C:\\roboweb\robo7tools\webadmin\get'
+        path=r'C:\\robo7_data\PRINT\DATA'
+        if len(os.listdir(path=path))!=0:
+                
+            #for filename in os.listdir(path=path):
+            
+                if os.path.exists((folder+'\\'+i.filenameok))!=-1:
+
+                    try:    
+                        os.remove((folder+'\\'+i.filenameok))
+                        os.remove((folder+'\\'+i.filename+'.dat'))
+                        os.remove((folder+'\\'+i.filename+',DEF.TXT'))
+
+                        i.is_sent=True
+                        i.save()
+                    except Exception as e:
+                        i.is_sent=False
+                        i.exception_text=f"Failed to recieve result from robo7 {type(e)}, reason: {e}"
+                        i.save()

@@ -21,6 +21,14 @@ app.conf.enable_utc = False
 app.conf.beat_schedule = {
     "label_generate": {  # уникальное название задачи
         "task": 'users.tasks.label_generate',  # путь к задаче
-        "schedule": timedelta(seconds=10),  # интервал, через который будет выполняться задача
+        "schedule": timedelta(seconds=1),  # интервал, через который будет выполняться задача
+    },
+     "send_to_robo7": {  
+        "task": 'users.tasks.send_to_robo7',  
+        "schedule": timedelta(seconds=1), 
+    },
+     "check_robo7_complete": {  
+        "task": 'users.tasks.check_robo7_complete',  
+        "schedule": timedelta(seconds=1), 
     },
 }    
