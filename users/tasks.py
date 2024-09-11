@@ -200,7 +200,7 @@ def check_robo7_complete():
     folder=Path('DATA/')
     for i in Robo7Task.objects.filter(is_sent=True):
         
-        file_to_open_ok=folder / (i.filenameok)
+        file_to_open_ok=folder / (i.filenameok+'.txt')
         file_to_open_dat=folder / (i.filename+'.dat')
         file_to_open_def=folder / (i.filename+',DEF.TXT')
 
