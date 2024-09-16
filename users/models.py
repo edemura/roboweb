@@ -123,8 +123,8 @@ class Robo7Task(models.Model):
   
   def queue_calculate(self):
      
-     if self.get_previous_by_id().exists():
-        prev=self.get_previous_by_id()
+     if self.get_previous_by_create_datetime().exists():
+        prev=self.get_previous_by_create_datetime()
         if self.create_datetime.date()==prev.create_datetime.date():
             self.queue_num=prev.queue_num+1
 
