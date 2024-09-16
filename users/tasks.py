@@ -97,8 +97,8 @@ def tray_assign():
                 i.tray_num=tray_tube.tray
                 i.is_tray_assigned=True
                 i.is_validated=True
-                #i.queue_num=i.queue_calculate()
-                i.queue_num=5
+                i.queue_num=i.queue_calculate()
+                
             else:
                 i.is_tray_assigned=False
                 i.exception_text=f"Для вида исследования {i.analysis}, не найдено доступных видов пробирок"
