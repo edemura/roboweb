@@ -129,7 +129,11 @@ class Robo7Task(models.Model):
      if self.objects().get_previous_by_create_datetime(pk__lt=spk).exists():
         prev=self.objects().get_previous_by_create_datetime(pk__lt=spk)
         if self.create_datetime.date()==prev.create_datetime.date():
-            self.queue_num=prev.queue_num+1
+            return prev.queue_num
+        else: 
+            return 0
+     else: 
+        return 0
 
 #входящий JSON неразобранный тестовый
 
