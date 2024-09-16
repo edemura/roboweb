@@ -103,7 +103,7 @@ class Robo7Task(models.Model):
   analysis = models.CharField(max_length=255, verbose_name="Наименование вида исследования")
   code = models.CharField(max_length=255, verbose_name="ШК")
   tray_num = models.IntegerField(null=True, default=0, verbose_name="Назначенный лоток")
-  queue_num = models.IntegerField(null=True, default=0, verbose_name="Номер последовательности")
+  queue_num = models.IntegerField(null=True, default=1, verbose_name="Номер последовательности")
   is_tray_assigned = models.BooleanField(null=True, default=None, verbose_name="Лоток назначен")
   is_validated = models.BooleanField(null=True, default=None, verbose_name="Валидация пройдена")
   is_sent = models.BooleanField(null=True, default=None, verbose_name="Отправлено на прибор")
@@ -121,6 +121,12 @@ class Robo7Task(models.Model):
   def __str__(self):
     return self.patient_fio+' '+self.code+' '+str(self.create_datetime)
   
+  def queue_calculate(self):
+     
+     if self.get_previous_by_id().exists():
+        prev=self.get_previous_by_id()
+        if self.create_datetime.date()==prev.create_datetime.date():
+            self.queue_num=prev.queue_num+1
 
 #входящий JSON неразобранный тестовый
 
