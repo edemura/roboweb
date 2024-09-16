@@ -103,6 +103,7 @@ class Robo7Task(models.Model):
   analysis = models.CharField(max_length=255, verbose_name="Наименование вида исследования")
   code = models.CharField(max_length=255, verbose_name="ШК")
   tray_num = models.IntegerField(null=True, default=0, verbose_name="Назначенный лоток")
+  queue_num = models.IntegerField(null=True, default=0, verbose_name="Номер последовательности")
   is_tray_assigned = models.BooleanField(null=True, default=None, verbose_name="Лоток назначен")
   is_validated = models.BooleanField(null=True, default=None, verbose_name="Валидация пройдена")
   is_sent = models.BooleanField(null=True, default=None, verbose_name="Отправлено на прибор")
