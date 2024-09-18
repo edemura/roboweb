@@ -121,7 +121,7 @@ class Robo7Task(models.Model):
   def __str__(self):
     return self.patient_fio+' '+self.code+' '+str(self.create_datetime)
   
-
+  #расчет номера последовательности. Если новая дата. то нумерация стартует заново
   def queue_calculate(self):
      
      spk=self.pk
@@ -139,7 +139,8 @@ class Robo7Task(models.Model):
     
     
      self.save()
-
+  
+  #Вычитает день из даты создания для экземпляра - для тестирования
   def past_date(self):
      from datetime import timedelta
      self.create_datetime=self.create_datetime - timedelta(days=1)
@@ -362,8 +363,8 @@ class Analysis(models.Model):
 class ManualTask(models.Model):
 
     class Meta:
-        verbose_name=_('Ручная отправка заданий')
-        verbose_name_plural=_('Ручная отправка - задания')
+        verbose_name=_('Ручная отправка - задания')
+        verbose_name_plural=_('Ручная отправка заданий')
 
     create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
     is_task_set = models.BooleanField(null=True, default=None, verbose_name="создан таск")
