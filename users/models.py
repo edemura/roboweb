@@ -380,3 +380,6 @@ class ManualTask(models.Model):
 
     def __str__(self):
         return str(self.create_datetime)
+    
+    def get_analysis_name(self):
+       return Analysis.objects.get(pk=self.analysis).analysis_name

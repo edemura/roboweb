@@ -93,7 +93,8 @@ def make_robo7Task_manual():
         try:
             task=Robo7Task()
             task.patient_fio=i.last_name+' '+i.first_name
-            task.analysis=Analysis.objects.get(pk=i.analysis).analysis_name
+            task.analysis=i.get_analysis_name()
+            #Analysis.objects.get(pk=i.analysis).analysis_name
             task.code=i.barcode
             task.create_datetime=datetime.now()
             task.save()
