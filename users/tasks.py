@@ -121,6 +121,8 @@ def filename_generate():
             name.stocker_code='0'+str(i.tray_num)
             #Описать смысл следующей строки
             name.tray_number=(4-len(str(i.queue_num)))*'0'+str(i.queue_num)
+            name.patient_id=i.code
+            name.patient_name=i.patient_fio
 
             filename=name.make()
             filenameok=name.makeok()
