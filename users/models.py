@@ -121,19 +121,21 @@ class Robo7Task(models.Model):
   def __str__(self):
     return self.patient_fio+' '+self.code+' '+str(self.create_datetime)
   
+
   def queue_calculate(self):
      
-     spk=self.pk
+    #  spk=self.pk
      
      
-     if self.objects().get_previous_by_create_datetime(pk__lt=spk).exists():
-        prev=self.objects().get_previous_by_create_datetime(pk__lt=spk)
-        if self.create_datetime.date()==prev.create_datetime.date():
-            return prev.queue_num
-        else: 
-            return 0
-     else: 
-        return 0
+    #  if self.objects().get_previous_by_create_datetime(pk__lt=spk).exists():
+    #     prev=self.objects().get_previous_by_create_datetime(pk__lt=spk)
+    #     if self.create_datetime.date()==prev.create_datetime.date():
+    #         return prev.queue_num
+    #     else: 
+    #         return 0
+    #  else: 
+    #     return 0
+    self.queue_num=6 
 
 #входящий JSON неразобранный тестовый
 
