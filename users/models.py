@@ -438,7 +438,7 @@ class DataFile(models.Model):
     file=models.TextField(null=True, default=None, verbose_name="Имя файла")
     
     @classmethod
-    def read_data():
+    def read_data(cls):
         folder=Path('DATA/')
     
 
@@ -453,3 +453,10 @@ class DataFile(models.Model):
             # except Exception as e:
             #     pass
             #     #print(f'Ошибка при удалении файла {file_path}. {e}')
+           
+    @classmethod
+    def delete_data(cls):
+
+        for inst in __class__.objects.all():
+           inst.delete()
+           
