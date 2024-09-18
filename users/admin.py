@@ -64,7 +64,9 @@ class LocationAdmin(admin.ModelAdmin):
 
 @admin.action(description="Created -1 day")
 def past_date(modeladmin, request, queryset):
-     queryset.update(past_date())
+     for i in queryset:
+         i.past_date()
+     #queryset.update(past_date())
 
 @admin.register(Robo7Task) 
 class Robo7TaskAdmin(admin.ModelAdmin):
