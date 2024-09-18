@@ -62,6 +62,9 @@ class LocationAdmin(admin.ModelAdmin):
 
 #Все что ниже самописное для робо7
 
+@admin.action(description="Created -1 day")
+def past_date(modeladmin, request, queryset):
+     queryset.update(past_date())
 
 @admin.register(Robo7Task) 
 class Robo7TaskAdmin(admin.ModelAdmin):
@@ -73,6 +76,8 @@ class Robo7TaskAdmin(admin.ModelAdmin):
         
     ]
     readonly_fields = ('create_datetime', 'update_datetime',)
+    actions = [past_date]
+
   
 @admin.action(description="Mark selected stories as published")
 def make_published(modeladmin, request, queryset):

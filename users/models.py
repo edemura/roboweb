@@ -138,6 +138,11 @@ class Robo7Task(models.Model):
     
      self.save()
 
+  def past_date(self):
+     from datetime import timedelta
+     self.create_datetime=self.create_datetime - timedelta(days=1)
+     self.save()
+
 #входящий JSON неразобранный тестовый
 
 class Incomejson(models.Model):
