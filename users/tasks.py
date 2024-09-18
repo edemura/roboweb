@@ -266,44 +266,14 @@ def check_robo7_complete():
 def remove_all_data():
 
     folder=Path('DATA/')
-    try:
-        os.remove(folder / '*.*')
-    except:
-        pass
-    # for i in Robo7Task.objects.filter(is_sent=True, is_complete=(False or None)):
-        
-    #     file_to_open_ok=folder / (i.filenameok+'.txt')
-    #     file_to_open_dat=folder / (i.filename+'.dat')
-    #     file_to_open_def=folder / (i.filename+',DEF.TXT')
+    
 
-        
-
-        #path=r'C:\\roboweb\robo7tools\webadmin\get'
-        #path=r'C:\\robo7_data\PRINT\DATA'
-        
-        # if len(os.listdir(path=folder))!=0:
-                
-        #     #for filename in os.listdir(path=path):
-            
-        #         if os.path.exists(file_to_open_ok):
-        #             # if os.path.exists(file_to_open_dat):
-        #             #     try:
-        #             #         os.remove(file_to_open_dat)
-        #             #     except:
-        #             #         pass
-
-        #             # if os.path.exists(file_to_open_def):
-        #             #     try:
-        #             #         os.remove(file_to_open_def)
-        #             #     except:
-        #             #         pass
-                        
-        #             try:    
-        #                 # os.remove(file_to_open_ok)
-
-        #                 i.is_complete=True
-        #                 i.save()
-        #             except Exception as e:
-        #                 i.is_complete=False
-        #                 i.exception_text=f"Failed to recieve result from robo7 {type(e)}, reason: {e}"
-        #                 i.save()
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+        except Exception as e:
+            pass
+            #print(f'Ошибка при удалении файла {file_path}. {e}')
+    
