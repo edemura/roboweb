@@ -70,9 +70,9 @@ def past_date(modeladmin, request, queryset):
      #queryset.update(past_date())
          
 @admin.action(description="Delete data & mark as complete")
-def deleta_data(modeladmin, request, queryset):
+def delete_data(modeladmin, request, queryset):
      for i in queryset:
-         i.deleta_data()
+         i.delete_data()
      
 
 @admin.register(Robo7Task) 
@@ -85,7 +85,7 @@ class Robo7TaskAdmin(admin.ModelAdmin):
         
     ]
     readonly_fields = ('create_datetime', 'update_datetime',)
-    actions = [past_date]
+    actions = [past_date, delete_data]
     list_per_page = 5
 
   
