@@ -395,7 +395,7 @@ class Analysis(models.Model):
   )
   analysis_name = models.CharField(max_length=255, default="Новый вид исследования", verbose_name="Вид исследования(наименование)")
   analysis_code = models.CharField(max_length=255, default="Новый код исследования", verbose_name="Вид исследования(Код)")
-  analysis_name_en = models.CharField(max_length=255, default="name", verbose_name="Вид исследования для печати (англ)")
+  analysis_name_en = models.CharField(max_length=255, default="name", verbose_name="Для печати (англ)")
   
   def __str__(self):
     return self.analysis_name
