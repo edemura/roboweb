@@ -434,6 +434,8 @@ class DataFile(models.Model):
     class Meta:
         verbose_name=_('Файлы')
         verbose_name_plural=_('Содержимое папки DATA')
+
+    file=models.TextField(null=True, default=None, verbose_name="Имя файла")
     
     @classmethod
     def read_data():
@@ -441,7 +443,9 @@ class DataFile(models.Model):
     
 
         for filename in os.listdir(folder):
-           datafile = __class__(file=filename)
+           datafile = __class__()
+           datafile.file = filename
+           datafile.save()
             # file_path = os.path.join(folder, filename)
             # try:
             #     if os.path.isfile(file_path):

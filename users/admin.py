@@ -139,6 +139,12 @@ class ManualTaskAdmin(admin.ModelAdmin):
     list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'analysis', 'barcode', 'exception_text', ]
     readonly_fields = ('create_datetime', 'exception_text', )
 
+
+@admin.action(description="read_data")
+def read_data(modeladmin, request, queryset):
+    DataFile.read_data()  
+
 @admin.register(DataFile) 
 class DataFileAdmin(admin.ModelAdmin):
     list_display = ['file', ]
+    actions = ['read_data',]
