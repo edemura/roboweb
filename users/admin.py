@@ -152,3 +152,36 @@ class DataFileAdmin(admin.ModelAdmin):
 
 # from dtb.urls import urlpatterns
 # admin.site.get_urls(urlpatterns)
+    
+from django.urls import path
+
+class MyAdminSite(admin.AdminSite):
+    site_header = "Custom Administration"
+    def get_urls(self):
+        urls = super().get_urls()
+        my_urls = [path("settings/", self.admin_view(self.settings_view), name="settings")]
+        return my_urls + urls
+
+    def get_app_list(self, request, app_label=None):
+        app_list = super().get_app_list(request, app_label)
+        if app_label is None or app_label == 'general':
+            app_list.append(
+                {
+                    "name": "General",
+                    "app_label": "general",
+                    "models": [
+                        {
+                            "name": "Settings",
+                            "object_name": "settings",
+                            "admin_url": "/admin/settings",
+                            "view_only": True,
+                        }
+                    ],
+                }
+            )
+        return app_list
+
+    # def settings_view(self, request):
+    #     context = dict(self.each_context(request))
+    #     context['parameters'] = config.get_parameters()
+    #     return TemplateResponse(request, 'admin/settings/settings.html', context)
