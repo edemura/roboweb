@@ -148,3 +148,5 @@ def read_data(modeladmin, request, queryset):
 class DataFileAdmin(admin.ModelAdmin):
     list_display = ['file', ]
     actions = ['read_data']
+
+admin.site.get_urls()
