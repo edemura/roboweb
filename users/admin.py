@@ -11,7 +11,7 @@ from users.models import Incomejson
 from users.models import TaskJson
 from users.models import ManualTask
 
-from users.models import TubeType, TrayTube, Analysis, AnalysisSet
+from users.models import TubeType, TrayTube, Analysis, AnalysisSet, Filename
 
 from users.forms import BroadcastForm
 
