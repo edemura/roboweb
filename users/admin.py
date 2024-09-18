@@ -79,6 +79,7 @@ class Robo7TaskAdmin(admin.ModelAdmin):
     ]
     readonly_fields = ('create_datetime', 'update_datetime',)
     actions = [past_date]
+    list_per_page = 10
 
   
 @admin.action(description="Mark selected stories as published")
