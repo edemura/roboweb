@@ -150,5 +150,5 @@ class DataFileAdmin(admin.ModelAdmin):
     actions = ['read_data']
 
 
-from dtb.urls import urlpatterns
-admin.site.get_urls(urlpatterns)
+# from dtb.urls import urlpatterns
+# admin.site.get_urls(urlpatterns)
