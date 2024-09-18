@@ -127,8 +127,8 @@ class Robo7Task(models.Model):
      spk=self.pk
      
      
-     if __class__.objects().get_previous_by_create_datetime(pk__lt=spk).exists():
-        prev=__class__.objects().get_previous_by_create_datetime(pk__lt=spk)
+     if __class__.objects.get_previous_by_create_datetime(pk__lt=spk).exists():
+        prev=__class__.objects.get_previous_by_create_datetime(pk__lt=spk)
         if self.create_datetime.date()==prev.create_datetime.date():
             self.queue_num=prev.queue_num+1
         else: 
