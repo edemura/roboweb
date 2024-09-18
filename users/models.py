@@ -353,3 +353,29 @@ class Analysis(models.Model):
 
   def __str__(self):
     return self.analysis_name
+  
+
+
+  #Ручная отправка заданий
+# Добавить сериализатор и обработку апи
+
+class ManualTask(models.Model):
+
+    class Meta:
+        verbose_name=_('Ручная отправка заданий')
+        verbose_name_plural=_('Ручная отправка - задания')
+
+    create_datetime = models.DateTimeField(null=True, auto_now=False, auto_now_add=True, verbose_name='Создано')
+    is_task_set = models.BooleanField(null=True, default=None, verbose_name="создан таск")
+
+    first_name=models.TextField(null=True, default=None, verbose_name="Имя пациента")
+    last_name=models.TextField(null=True, default=None, verbose_name="Фамилия пациента")
+    analysis=models.ForeignKey(
+        "users.Analysis",
+        on_delete=models.CASCADE,
+        verbose_name="Вид исследования"
+    )
+    barcode=models.TextField(null=True, default=None, verbose_name="Штрих-код")
+
+    def __str__(self):
+        return str(self.create_datetime)

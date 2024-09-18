@@ -39,4 +39,9 @@ app.conf.beat_schedule = {
         "task": 'users.tasks.check_robo7_complete',  
         "schedule": timedelta(seconds=1), 
     },
+     "make_robo7Task_manual": {  
+        "task": 'users.tasks.make_robo7Task_manual',  
+        "schedule": timedelta(seconds=1), 
+    },
+    
 }    

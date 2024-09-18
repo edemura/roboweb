@@ -9,6 +9,7 @@ from users.models import User
 from users.models import Robo7Task
 from users.models import Incomejson
 from users.models import TaskJson
+from users.models import ManualTask
 
 from users.models import TubeType, TrayTube, Analysis, AnalysisSet
 
@@ -126,3 +127,7 @@ admin.site.register(AnalysisSet, AnalysisSetAdmin)
 @admin.register(Analysis) 
 class AnalysisAdmin(admin.ModelAdmin):
     list_display = ['analysis_name','analysis_code', 'set', 'tube_type',]
+
+@admin.register(ManualTask) 
+class ManualTaskAdmin(admin.ModelAdmin):
+    list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'middle_name', 'analysis', 'barcode', ]

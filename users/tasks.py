@@ -51,7 +51,7 @@ def broadcast_message(
 #мое
     
 from celery import shared_task
-from users.models import Incomejson, TaskJson, Robo7Task, Analysis, AnalysisSet, TrayTube, Filename, Label
+from users.models import Incomejson, TaskJson, Robo7Task, Analysis, AnalysisSet, TrayTube, Filename, Label, ManualTask
 from time import sleep
 from datetime import datetime
 
@@ -84,6 +84,27 @@ def make_robo7Task():
             i.is_task_set=False
             i.exception_text=f"Failed to make task {type(e)}, reason: {e}"
             i.save() 
+
+
+#Создание из экземпляра ManualTask типа задание для ROBO7   
+@app.task(ignore_result=True)
+def make_robo7Task_manual():
+    for i in ManualTask.objects.exclude(is_task_set=True):
+        try:
+            task=Robo7Task()
+            task.patient_fio=i.last_name+' '+i.first_name
+            task.analysis=Analysis.objects.get(pk=i.analysis)
+            task.code=i.barcode
+            task.create_datetime=datetime.now()
+            task.save()
+            i.is_task_set=True
+            i.save()
+        except Exception as e:
+            i.is_task_set=False
+            #i.exception_text=f"Failed to make task {type(e)}, reason: {e}"
+            i.save() 
+
+
 
 #Присвоение заданиям номеров лотков, в которых находится подходящий тип пробирки
 @app.task(ignore_result=True)
