@@ -150,7 +150,7 @@ class Robo7Task(models.Model):
 
   
   #Удалить файлы с диска для инстанса
-  def deleta_data():
+  def delete_data(self):
     
     folder=Path('DATA/')
     for i in Robo7Task.objects.filter(is_sent=True, is_complete=(False or None)):
