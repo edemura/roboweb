@@ -132,9 +132,9 @@ class Robo7Task(models.Model):
         if self.create_datetime.date()==prev.create_datetime.date():
             self.queue_num=prev.queue_num+1
         else: 
-            self.queue_num=0
+            self.queue_num=1
      else: 
-        self.queue_num=0
+        self.queue_num=1
 
     
      self.save()
