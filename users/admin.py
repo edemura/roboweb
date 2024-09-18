@@ -147,4 +147,4 @@ def read_data(modeladmin, request, queryset):
 @admin.register(DataFile) 
 class DataFileAdmin(admin.ModelAdmin):
     list_display = ['file', ]
-    actions = ['read_data',]
+    actions = ['read_data']
