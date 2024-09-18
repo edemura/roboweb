@@ -35,7 +35,8 @@ urlpatterns = [
     path('super_secter_webhook/', csrf_exempt(views.TelegramBotWebhookView.as_view())),
     path('import/',views.recieve_json, name="recieve_json"),
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('data/',views.data_files, name="data_files"),
 ]
 
 

@@ -1,7 +1,7 @@
 import json
 import logging
 from django.views import View
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from telegram import Update
 
 from dtb.celery import app
@@ -76,3 +76,14 @@ class IncomeJsonViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+
+#пробуем создать вью для файлов
+
+from users.models import DataFile
+
+def data_files(request):
+    DataFile.delete_data()
+    DataFile.read_data()
+    files_list = DataFile.objects.all()
+    output = ", ".join([q.file for q in files_list])
+    return HttpResponse(output)
