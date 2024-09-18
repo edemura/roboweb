@@ -136,6 +136,7 @@ class Robo7Task(models.Model):
     #  else: 
     #     return 0
     self.queue_num=6 
+    self.save()
 
 #входящий JSON неразобранный тестовый
 
