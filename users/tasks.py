@@ -120,7 +120,7 @@ def filename_generate():
             name.date=datetime.now().strftime('%m%d')
             name.stocker_code='0'+str(i.tray_num)
             #Описать смысл следующей строки
-            name.tray_number=(4-len(str(i.queue_num)))*0+str(i.queue_num)
+            name.tray_number=(4-len(str(i.queue_num)))*'0'+str(i.queue_num)
 
             filename=name.make()
             filenameok=name.makeok()
