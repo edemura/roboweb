@@ -13,6 +13,8 @@ from tgbot.handlers.utils.info import extract_user_data_from_update
 from utils.models import CreateUpdateTracker, nb, CreateTracker, GetOrNoneManager
 
 from dtb.celery import app
+from pathlib import Path
+import os
 
 
 class AdminUserManager(Manager):
@@ -145,6 +147,48 @@ class Robo7Task(models.Model):
      from datetime import timedelta
      self.create_datetime=self.create_datetime - timedelta(days=1)
      self.save()
+
+  
+  #Удалить файлы с диска для инстанса
+  def deleta_data():
+    
+    folder=Path('DATA/')
+    for i in Robo7Task.objects.filter(is_sent=True, is_complete=(False or None)):
+        
+        file_to_open_ok=folder / (i.filenameok+'.txt')
+        file_to_open_dat=folder / (i.filename+'.dat')
+        file_to_open_def=folder / (i.filename+',DEF.TXT')
+
+        #path=r'C:\\roboweb\robo7tools\webadmin\get'
+        #path=r'C:\\robo7_data\PRINT\DATA'
+                
+            #for filename in os.listdir(path=path):
+            
+        if os.path.exists(file_to_open_ok):
+            try:
+                os.remove(file_to_open_ok)
+            except:
+                pass
+        if os.path.exists(file_to_open_dat):
+            try:
+                os.remove(file_to_open_dat)
+            except:
+                pass
+
+        if os.path.exists(file_to_open_def):
+            try:
+                os.remove(file_to_open_def)
+            except:
+                pass
+            
+        try:    
+
+            i.is_complete=True
+            i.save()
+        except Exception as e:
+            i.is_complete=False
+            i.exception_text=f"Failed to delete results from DATA folder {type(e)}, reason: {e}"
+            i.save()
 
 #входящий JSON неразобранный тестовый
 

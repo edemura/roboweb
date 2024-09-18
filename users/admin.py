@@ -68,6 +68,12 @@ def past_date(modeladmin, request, queryset):
      for i in queryset:
          i.past_date()
      #queryset.update(past_date())
+         
+@admin.action(description="Delete data & mark as complete")
+def deleta_data(modeladmin, request, queryset):
+     for i in queryset:
+         i.deleta_data()
+     
 
 @admin.register(Robo7Task) 
 class Robo7TaskAdmin(admin.ModelAdmin):
