@@ -430,3 +430,22 @@ class ManualTask(models.Model):
        return Analysis.objects.get(pk=self.analysis).analysis_name
     
 
+class DataFile(models.Model):
+    class Meta:
+        verbose_name=_('Файлы')
+        verbose_name_plural=_('Содержимое папки DATA')
+    
+    @classmethod
+    def read_data():
+        folder=Path('DATA/')
+    
+
+        for filename in os.listdir(folder):
+           datafile = __class__(file=filename)
+            # file_path = os.path.join(folder, filename)
+            # try:
+            #     if os.path.isfile(file_path):
+            #         os.remove(file_path)
+            # except Exception as e:
+            #     pass
+            #     #print(f'Ошибка при удалении файла {file_path}. {e}')

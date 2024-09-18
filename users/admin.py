@@ -11,7 +11,7 @@ from users.models import Incomejson
 from users.models import TaskJson
 from users.models import ManualTask
 
-from users.models import TubeType, TrayTube, Analysis, AnalysisSet, Filename
+from users.models import TubeType, TrayTube, Analysis, AnalysisSet, DataFile
 
 from users.forms import BroadcastForm
 
@@ -138,3 +138,7 @@ class AnalysisAdmin(admin.ModelAdmin):
 class ManualTaskAdmin(admin.ModelAdmin):
     list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'analysis', 'barcode', 'exception_text', ]
     readonly_fields = ('create_datetime', 'exception_text', )
+
+@admin.register(DataFile) 
+class DataFileAdmin(admin.ModelAdmin):
+    list_display = ['file', ]
