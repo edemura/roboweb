@@ -128,15 +128,13 @@ class Robo7Task(models.Model):
      
      #get_previous_by_
      #get_previous_by_create_datetime(pk__lt=spk)
-     if self.get_previous_by_id().exists():
-        prev=self.get_previous_by_id()
-        if self.create_datetime.date()==prev.create_datetime.date():
-            self.queue_num=prev.queue_num+1
-        else: 
-            self.queue_num=1
+    
+     prev=self.get_previous_by_id()
+     if self.create_datetime.date()==prev.create_datetime.date():
+        self.queue_num=prev.queue_num+1
      else: 
         self.queue_num=1
-
+    
     
      self.save()
 
