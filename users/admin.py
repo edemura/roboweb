@@ -130,4 +130,4 @@ class AnalysisAdmin(admin.ModelAdmin):
 
 @admin.register(ManualTask) 
 class ManualTaskAdmin(admin.ModelAdmin):
-    list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'middle_name', 'analysis', 'barcode', ]
+    list_display = ['id','create_datetime', 'is_task_set', 'first_name', 'last_name', 'analysis', 'barcode', ]
