@@ -146,6 +146,8 @@ def filename_generate():
             name.tray_number=(4-len(str(i.queue_num)))*'0'+str(i.queue_num)
             name.patient_id=i.code
             name.patient_name=i.patient_fio
+            an=Analysis.objects.filter(set=AnalysisSet.objects.get(active=True), analysis_name=i.analysis)[0]
+            name.container_name=an.analysis_name_en
 
             filename=name.make()
             filenameok=name.makeok()

@@ -132,7 +132,7 @@ admin.site.register(AnalysisSet, AnalysisSetAdmin)
 
 @admin.register(Analysis) 
 class AnalysisAdmin(admin.ModelAdmin):
-    list_display = ['analysis_name','analysis_code', 'set', 'tube_type',]
+    list_display = ['analysis_name','analysis_code', 'analysis_name_en', 'set', 'tube_type',]
 
 @admin.register(ManualTask) 
 class ManualTaskAdmin(admin.ModelAdmin):
