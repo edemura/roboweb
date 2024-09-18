@@ -459,4 +459,6 @@ class DataFile(models.Model):
 
         for inst in __class__.objects.all():
            inst.delete()
-           
+
+DataFile.delete_data()           
+DataFile.read_data()
