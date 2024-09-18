@@ -421,9 +421,12 @@ class ManualTask(models.Model):
         verbose_name="Вид исследования"
     )
     barcode=models.TextField(null=True, default=None, verbose_name="Штрих-код")
+    exception_text=models.TextField(null=True, default=None, verbose_name="Ошибка")
 
     def __str__(self):
         return str(self.create_datetime)
     
     def get_analysis_name(self):
        return Analysis.objects.get(pk=self.analysis).analysis_name
+    
+

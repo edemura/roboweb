@@ -102,7 +102,7 @@ def make_robo7Task_manual():
             i.save()
         except Exception as e:
             i.is_task_set=False
-            #i.exception_text=f"Failed to make task {type(e)}, reason: {e}"
+            i.exception_text=f"Failed to make task {type(e)}, reason: {e}"
             i.save() 
 
 
@@ -261,7 +261,7 @@ def check_robo7_complete():
                         i.save()
 
 
-#Проверка выполнения задач прибором
+#удаление всех файлов в папке дата
 @app.task(ignore_result=True)
 def remove_all_data():
 
