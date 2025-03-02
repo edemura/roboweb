@@ -6,4 +6,3 @@ class IncomeJsonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Incomejson
         fields = ['text', 'json']
-
