@@ -463,3 +463,18 @@ class DataFile(models.Model):
 
 #DataFile.delete_data()           
 #DataFile.read_data()
+
+#Заказы - моделька для тестирования вывода в форму
+# поля: тип последовательности ШК, номер шк, 
+        
+class Orders(models.Model):
+    class Meta:
+        verbose_name=_('Заказ')
+        verbose_name_plural=_('Заказы')
+
+    barcode_type=models.TextField(null=True, default=None, verbose_name="Тип ШК")
+    barcode_number=models.TextField(null=True, default=None, verbose_name="Номер ШК")
+
+
+    #file=models.TextField(null=True, default=None, verbose_name="Имя файла")
+    

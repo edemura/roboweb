@@ -10,6 +10,7 @@ from users.models import Robo7Task
 from users.models import Incomejson
 from users.models import TaskJson
 from users.models import ManualTask
+from users.models import Orders
 
 from users.models import TubeType, TrayTube, Analysis, AnalysisSet, DataFile
 
@@ -148,6 +149,10 @@ def read_data(modeladmin, request, queryset):
 class DataFileAdmin(admin.ModelAdmin):
     list_display = ['file', ]
     actions = ['read_data']
+
+@admin.register(Orders) 
+class OrdersAdmin(admin.ModelAdmin):
+    list_display = ['barcode_type','barcode_number',]
 
 
 # from dtb.urls import urlpatterns
