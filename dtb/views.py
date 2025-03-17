@@ -87,3 +87,12 @@ def data_files(request):
     files_list = DataFile.objects.all()
     output = ", ".join([q.file for q in files_list])
     return HttpResponse(output)
+
+#пробуем создать вью для ORDERS
+
+from users.models import Orders
+
+def orders_request(request):
+    files_list = Orders.objects.all()
+    output = ", ".join([q.file for q in files_list])
+    return HttpResponse(output)
