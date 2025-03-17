@@ -94,5 +94,5 @@ from users.models import Orders
 
 def orders_request(request):
     files_list = Orders.objects.all()
-    output = ", ".join([q.file for q in files_list])
+    output = ", ".join([q.barcode_type for q in files_list])
     return HttpResponse(output)
