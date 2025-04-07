@@ -1,0 +1,8 @@
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    {{ form }}
+    <input type="hidden" name="action" value="broadcast_order" />
+    <input type="submit" name="apply" value="Send" />
+</form>
+{% endblock %}
+
