@@ -12,6 +12,8 @@ from tgbot.main import bot
 from users.models import Incomejson
 from django.core import serializers
 
+from django.shortcuts import render
+
 logger = logging.getLogger(__name__)
 
 
@@ -93,6 +95,7 @@ def data_files(request):
 from users.models import Orders
 
 def orders_request(request):
-    files_list = Orders.objects.all()
-    output = ", ".join([q.barcode_type for q in files_list])
-    return HttpResponse(output)
+    #files_list = Orders.objects.all()
+    #output = ", ".join([q.barcode_type for q in files_list])
+    #return HttpResponse(output)
+    return render(request, "order.html")
