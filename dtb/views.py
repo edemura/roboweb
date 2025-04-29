@@ -14,6 +14,9 @@ from django.core import serializers
 
 from django.shortcuts import render
 
+from users.forms import OrdersForm
+from django.http import HttpResponseRedirect
+
 logger = logging.getLogger(__name__)
 
 
@@ -98,4 +101,14 @@ def orders_request(request):
     #files_list = Orders.objects.all()
     #output = ", ".join([q.barcode_type for q in files_list])
     #return HttpResponse(output)
-    return render(request, "order.html")
+
+    if request.method == "POST":
+        form = OrdersForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect("/orders/")
+        
+    else:
+        form = OrdersForm()
+
+    return render(request, "order.html", {"form": form})
+    #return render(request, "order.html")
