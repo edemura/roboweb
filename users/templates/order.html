@@ -1,5 +1,17 @@
-<form action="/your-name/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+<div>
+    <form action="/lab/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <p> Создать заказ для внутренней лаборатории</p>
+        <input type="submit" value="Создать">
+    </form>
+</div>
+
+<div>
+    <form action="/ckdl/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <p> Создать заказ для лаборатории ЦКДЛ</p>
+        <input type="submit" value="Создать ЦКДЛ">
+    </form>
+</div>

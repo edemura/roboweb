@@ -10,6 +10,7 @@ from tgbot.dispatcher import dispatcher
 from tgbot.main import bot
 
 from users.models import Incomejson
+from users.models import Orders
 from django.core import serializers
 
 from django.shortcuts import render
@@ -105,6 +106,10 @@ def orders_request(request):
     if request.method == "POST":
         form = OrdersForm(request.POST)
         if form.is_valid():
+            order = Orders()
+            order.barcode_number = form.cleaned_data['tube_number']
+            order.barcode_type = form.cleaned_data['tube_number']
+            order.save()
             return HttpResponseRedirect("/orders/")
         
     else:
