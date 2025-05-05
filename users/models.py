@@ -478,3 +478,13 @@ class Orders(models.Model):
 
     #file=models.TextField(null=True, default=None, verbose_name="Имя файла")
     
+class Sequences(models.Model):
+    class Meta:
+        verbose_name=_('Последовательность нумерации')
+        verbose_name_plural=_('Последовательности нумерации')
+
+    sequence_name=models.CharField(null=True, default=None, verbose_name="Наименование последовательности")
+    is_active=models.BooleanField(null=False, default=False, verbose_name="Последовательность активна")
+    digits_number=models.IntegerField(null=False, min=1, max=10, verbose_name="Количество знаков(длина последовательности)")
+    current_number=models.IntegerField(null=True, verbose_name="Текущее значение")
+
