@@ -485,6 +485,6 @@ class Sequences(models.Model):
 
     sequence_name=models.CharField(null=True, default=None, verbose_name="Наименование последовательности")
     is_active=models.BooleanField(null=False, default=False, verbose_name="Последовательность активна")
-    digits_number=models.IntegerField(null=False, min=1, max=10, verbose_name="Количество знаков(длина последовательности)")
+    digits_number=models.IntegerField(null=False, verbose_name="Количество знаков(длина последовательности)")
     current_number=models.IntegerField(null=True, verbose_name="Текущее значение")
 
