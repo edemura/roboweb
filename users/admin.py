@@ -11,6 +11,7 @@ from users.models import Incomejson
 from users.models import TaskJson
 from users.models import ManualTask
 from users.models import Orders
+from users.models import Sequences
 
 from users.models import TubeType, TrayTube, Analysis, AnalysisSet, DataFile
 
@@ -190,3 +191,7 @@ class MyAdminSite(admin.AdminSite):
     #     context = dict(self.each_context(request))
     #     context['parameters'] = config.get_parameters()
     #     return TemplateResponse(request, 'admin/settings/settings.html', context)
+
+@admin.register(Sequences) 
+class SequencesAdmin(admin.ModelAdmin):
+    list_display = ['sequence_name','is_active', 'digits_number', 'current_number']
